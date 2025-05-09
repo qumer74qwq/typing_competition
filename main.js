@@ -131,6 +131,7 @@ inputField.addEventListener('keydown', e => {
       if (timerActive) inputFieldClass();
   }
   function inputFieldClass() {
+    let patt = /^[\u4e00-\u9fa5]{0,}$/;
     if (e.key >= 'a' && e.key <= 'z' || (e.key === `'` || e.key === ',' || e.key === '.' || e.key === ';')) {
       let inputWordSlice = inputField.value + e.key;
       let currentWordSlice = wordList[currentWord].slice(0, inputWordSlice.length);
@@ -139,8 +140,12 @@ inputField.addEventListener('keydown', e => {
       let inputWordSlice = e.ctrlKey ? '' : inputField.value.slice(0, inputField.value.length - 1);
       let currentWordSlice = wordList[currentWord].slice(0, inputWordSlice.length);
       inputField.className = inputWordSlice === currentWordSlice ? '' : 'wrong';
-    } else if (e.key === ' ') {
+    } else if (e.key === ' ' && !patt.test(e.key)) {
       inputField.className = '';
+    } else if (patt.test(e.key)) {
+      let inputWordSlice = inputField.value + e.key;
+      let currentWordSlice = wordList[currentWord].slice(0, inputWordSlice.length);
+      inputField.className = inputWordSlice === currentWordSlice ? '' : 'wrong';
     }
   }
 
@@ -217,9 +222,15 @@ inputField.addEventListener('keydown', e => {
   }
 });
 
+function calcuScore(wpm, acc) {
+  let score;
+  score = (wpm * 0.4 + acc * 0.6) * 2000
+  return score;
+}
+
 // Calculate and display result
 function showResult() {
-  let words, minute, acc;
+  let words, minute, acc, score;
   switch (typingMode) {
     case 'wordcount':
       words = correctKeys / 5;
@@ -242,48 +253,50 @@ function showResult() {
   document.querySelector('#right-wing').innerHTML = `WPM: ${wpm} / ACC: ${acc}`;
   console.log(wpm, acc);
   switch (wpm) {
-    case wpm<=40:
+    case wpm <= 40:
       tips = `<span color="yellow">平均</span>`
       break;
-    case wpm>40 && wpm<=60:
+    case wpm > 40 && wpm <= 60:
       tips = `<span color="green">良好</span>`
       break;
-    case wpm>60 && wpm<=80:
+    case wpm > 60 && wpm <= 80:
       tips = `<span color="blue">優秀</span>`
       break;
-    case wpm>80 && wpm<=100:
+    case wpm > 80 && wpm <= 100:
       tips = `<span color="purple">神速</span>`
       break;
-    case wpm>100:
+    case wpm > 100:
       tips = `<span color="red">神人</span>`
       break;
     default:
       tips = ``
   }
   switch (acc) {
-    
-    case acc<=40:
+
+    case acc <= 40:
       tipsa_acc = `<span color="yellow">平均</span>`
       break;
-    case acc>40 && acc<=60:
+    case acc > 40 && acc <= 60:
       tipsa_acc = `<span color="green">良好</span>`
       break;
-    case acc>60 && acc<=80:
+    case acc > 60 && acc <= 80:
       tipsa_acc = `<span color="blue">優秀</span>`
       break;
-    case acc>80 && acc<=100:
+    case acc > 80 && acc <= 100:
       tipsa_acc = `<span color="red">你確定你沒開外挂？</span>`
       break;
     default:
       tipsa_acc = ``;
       break
   }
+  score = calcuScore(wpm, acc);
   Swal.fire({
     title: "打字比賽結果",
     icon: "info",
     html: `
       你的WPM是：${wpm} ${tips}<br>
       你的ACC是：${acc}% ${tipsa_acc}
+      <strong>你的最終得分是：${score}</strong>
     `,
     showCloseButton: true,
   });
