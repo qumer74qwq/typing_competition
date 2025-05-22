@@ -259,37 +259,29 @@ function showResult() {
   document.querySelector('#right-wing').innerHTML = `WPM: ${wpm} / ACC: ${acc}`;
   console.log(wpm, acc);
   let tips, tipsa_acc;
-  switch (wpm) {
-    case wpm <= 40:
-      tips = `<span color="yellow">4v3rag3</span>`
-      break;
-    case wpm > 40 && wpm <= 60:
-      tips = `<span color="green">G00d</span>`
-      break;
-    case wpm > 60 && wpm <= 80:
-      tips = `<span color="blue">Exc3llent</span>`
-      break;
-    case wpm > 80 && wpm <= 100:
-      tips = `<span color="purple">P3rf3ct</span>`
-      break;
-    case wpm > 100:
-      tips = `<span color="red">CHE4T1NG</span>`
-      break;
+  
+  // For wpm
+  if (wpm <= 40) {
+    tips = `<span color="yellow">4v3rag3</span>`;
+  } else if (wpm > 40 && wpm <= 60) {
+    tips = `<span color="green">G00d</span>`;
+  } else if (wpm > 60 && wpm <= 80) {
+    tips = `<span color="blue">Exc3llent</span>`;
+  } else if (wpm > 80 && wpm <= 100) {
+    tips = `<span color="purple">P3rf3ct</span>`;
+  } else if (wpm > 100) {
+    tips = `<span color="red">CHE4T1NG</span>`;
   }
-  switch (acc) {
-
-    case acc <= 40:
-      tipsa_acc = `<span color="yellow">Bad</span>`
-      break;
-    case acc > 40 && acc <= 60:
-      tipsa_acc = `<span color="green">G00d</span>`
-      break;
-    case acc > 60 && acc <= 80:
-      tipsa_acc = `<span color="blue">Gr3at</span>`
-      break;
-    case acc > 80 && acc <= 100:
-      tipsa_acc = `<span color="red">P3rf3ct</span>`
-      break;
+  
+  // For acc
+  if (acc <= 40) {
+    tipsa_acc = `<span color="yellow">Bad</span>`;
+  } else if (acc > 40 && acc <= 60) {
+    tipsa_acc = `<span color="green">G00d</span>`;
+  } else if (acc > 60 && acc <= 80) {
+    tipsa_acc = `<span color="blue">Gr3at</span>`;
+  } else if (acc > 80 && acc <= 100) {
+    tipsa_acc = `<span color="red">P3rf3ct</span>`;
   }
   console.log(`acc: ${acc} ${tips}\nwpm: ${wpm} ${tipsa_acc}`);
   score = calcuScore(wpm, acc);
