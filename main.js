@@ -258,6 +258,7 @@ function showResult() {
   let wpm = Math.floor(words / minute);
   document.querySelector('#right-wing').innerHTML = `WPM: ${wpm} / ACC: ${acc}`;
   console.log(wpm, acc);
+  let tips, tipsa_acc;
   switch (wpm) {
     case wpm <= 40:
       tips = `<span color="yellow">4v3rag3</span>`
