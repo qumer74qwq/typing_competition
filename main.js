@@ -275,8 +275,6 @@ function showResult() {
     case wpm > 100:
       tips = `<span color="red">CHE4T1NG</span>`
       break;
-    default:
-      tips = ``
   }
   switch (acc) {
 
@@ -292,9 +290,6 @@ function showResult() {
     case acc > 80 && acc <= 100:
       tipsa_acc = `<span color="red">P3rf3ct</span>`
       break;
-    default:
-      tipsa_acc = ``;
-      break
   }
   console.log(`acc: ${acc} ${tips}\nwpm: ${wpm} ${tipsa_acc}`);
   score = calcuScore(wpm, acc);
