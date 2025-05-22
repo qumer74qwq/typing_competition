@@ -260,19 +260,19 @@ function showResult() {
   console.log(wpm, acc);
   switch (wpm) {
     case wpm <= 40:
-      tips = `<span color="yellow">平均</span>`
+      tips = `<span color="yellow">4v3rag3</span>`
       break;
     case wpm > 40 && wpm <= 60:
-      tips = `<span color="green">良好</span>`
+      tips = `<span color="green">G00d</span>`
       break;
     case wpm > 60 && wpm <= 80:
-      tips = `<span color="blue">優秀</span>`
+      tips = `<span color="blue">Exc3llent</span>`
       break;
     case wpm > 80 && wpm <= 100:
-      tips = `<span color="purple">神速</span>`
+      tips = `<span color="purple">P3rf3ct</span>`
       break;
     case wpm > 100:
-      tips = `<span color="red">神人</span>`
+      tips = `<span color="red">CHE4T1NG</span>`
       break;
     default:
       tips = ``
@@ -280,21 +280,22 @@ function showResult() {
   switch (acc) {
 
     case acc <= 40:
-      tipsa_acc = `<span color="yellow">平均</span>`
+      tipsa_acc = `<span color="yellow">Bad</span>`
       break;
     case acc > 40 && acc <= 60:
-      tipsa_acc = `<span color="green">良好</span>`
+      tipsa_acc = `<span color="green">G00d</span>`
       break;
     case acc > 60 && acc <= 80:
-      tipsa_acc = `<span color="blue">優秀</span>`
+      tipsa_acc = `<span color="blue">Gr3at</span>`
       break;
     case acc > 80 && acc <= 100:
-      tipsa_acc = `<span color="red">你確定你沒開外挂？</span>`
+      tipsa_acc = `<span color="red">P3rf3ct</span>`
       break;
     default:
       tipsa_acc = ``;
       break
   }
+  console.log(`acc: ${acc} ${tips}\nwpm: ${wpm} ${tipsa_acc}`);
   score = calcuScore(wpm, acc);
   Swal.fire({
     title: "打字比賽結果",
