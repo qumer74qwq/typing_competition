@@ -130,6 +130,7 @@ inputField.addEventListener('keydown', e => {
     case 'time':
       if (timerActive) inputFieldClass();
   }
+
   function inputFieldClass() {
     let patt = /^[\u4e00-\u9fa5]{0,}$/;
     if (e.key >= 'a' && e.key <= 'z' || (e.key === `'` || e.key === ',' || e.key === '.' || e.key === ';')) {
@@ -221,7 +222,12 @@ inputField.addEventListener('keydown', e => {
     }
   }
 });
-
+inputField.addEventListener("paste", e => {
+  e.preventDefault();
+});
+textDisplay.addEventListener("copy", e => {
+  e.preventDefault();
+});
 function calcuScore(wpm, acc) {
   let score;
   score = (wpm * 0.4 + acc * 0.6) * 2000
