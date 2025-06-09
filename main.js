@@ -230,7 +230,8 @@ textDisplay.addEventListener("copy", e => {
 });
 function calcuScore(wpm, acc) {
   let score;
-  score = (wpm * 0.4 + acc * 0.6) * 2000
+  // score = (wpm * 0.4 + acc * 0.6) * 2000
+  score = Math.round(wpm * 10 * acc);
   return score;
 }
 
