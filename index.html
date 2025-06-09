@@ -70,10 +70,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
     <script>
-      except = "#tc-300"
-      optional_id = ["#tc-15", "#tc-30", "#tc-60", "#tc-120", "#tc-300"]
+      except = ["#tc-300", "#tc-15"];
+      optional_id = ["#tc-15", "#tc-30", "#tc-60", "#tc-120", "#tc-300"];
       optional_id.forEach(element => {
-        if (element != except) { document.querySelector(element).hidden = true; }
+        if (!except.includes(element)) { document.querySelector(element).hidden = true; }
       });
       // document.getElementsByClassName("slash").forEach(e => {
       //     e.hidden = true;
